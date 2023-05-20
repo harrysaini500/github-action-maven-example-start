@@ -23,4 +23,4 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Run CI
-          path: ./run_ci.sh > ci_output.txt
+          path: .github/workflows/hello.txt
