@@ -1,0 +1,27 @@
+name: Store Artifact in JFrog
+
+on:
+  workflow_dispatch:
+
+jobs:
+  store-artifact:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+
+      - name: Build JAR file
+        run: mvn clean package
+
+      - name: Store Artifact in JFrog
+        run: |
+          curl -fL https://getcli.jfrog.io | sh
+          ./jfrog rt config --url="http://3.111.42.215:8081/artifactory/libs-snapshot-local" --user="admin" --password="Harry@500" --interactive=false
+          ./jfrog rt u "target/your-jar-file.jar" "ip-172-31-8-85-snapshots/<libs-snapshot/>"
+
