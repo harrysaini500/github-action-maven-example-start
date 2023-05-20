@@ -23,5 +23,5 @@ jobs:
         run: |
           curl -fL https://getcli.jfrog.io | sh
           ./jfrog rt config --url="http://3.111.42.215:8081/artifactory/libs-snapshot-local" --user=$JFROG_USERNAME --password=$JFROG_PASSWORD --interactive=false
-          ./jfrog rt u "target/your-jar-file.jar" "ip-172-31-8-85-snapshots/<libs-snapshot/>"
+          ./jfrog rt u "ip-172-31-8-85-snapshots/<libs-snapshot/>"
 
