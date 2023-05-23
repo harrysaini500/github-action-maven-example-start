@@ -34,5 +34,5 @@ jobs:
         host: http://18.222.137.144:8080
         username: admin
         key: ${{ secrets.SERVER_SSH_KEY }} 
-        source: "${{ steps.findjar.outputs.jarfile }}"
-        target: "<Your server deployment directory>"
+        source: "${{ jfrog/github-action-maven-tutorial/1.0-SNAPSHOT/github-action-maven-tutorial-1.0-SNAPSHOT.jar }}"
+        target: "/var/www/html"
