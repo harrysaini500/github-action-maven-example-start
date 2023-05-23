@@ -24,10 +24,4 @@ jobs:
         JF_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
     - run: |
         jf rt u "target/github-action-maven-tutorial-1.0-SNAPSHOT.jar" "jfrog/github-action-maven-tutorial/1.0-SNAPSHOT/github-action-maven-tutorial-1.0-SNAPSHOT.jar"
-    - name: Set build name
-      id: set_build_name
-      run: echo "::set-output name=build_name::MyBuildName"
-
-    - name: Pull Artifact from JFrog
-      run: |
-          jfrog rt download --url=http://3.133.134.67:8081 --user=admin --password=$JFROG_PASSWORD --props="myKey=myValue,anotherKey=anotherValue" --build=${{ steps.set_build_name.outputs.build_name }}/$GITHUB_RUN_NUMBER jfrog/github-action-maven-tutorial/1.0-SNAPSHOT/github-action-maven-tutorial-1.0-SNAPSHOT.jar
+    
