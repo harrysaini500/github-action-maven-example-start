@@ -1,9 +1,19 @@
 name: Maven Build and Publish
 on:
   workflow_dispatch:
+  
+env:
+
+  ARTIFACTORY_URL: http://3.140.200.126:8081
+  ARTIFACTORY_REPO: jfrog
+  ARTIFACTORY_USERNAME: ${{ secrets.JFROG_USERNAME }}
+  ARTIFACTORY_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
+  TOMCAT_URL: http://3.142.141.49:8080
+  TOMCAT_USERNAME: ${{ secrets.TOMCAT_USERNAME }}
+  TOMCAT_PASSWORD: ${{ secrets.TOMCAT_PASSWORD }}
+  WAR_FILE: your-app.war
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -28,11 +38,10 @@ jobs:
       id: findjar
       run: echo "::set-output name=jarfile::$(ls target/*.jar | head -n 1)"
 
-    - name: Copy files via ssh
-      uses: appleboy/scp-action@master
-      with:
-        host: 3.142.141.49
-        username: ubuntu
-        key: ${{ secrets.SERVER_SSH_KEY }} 
-        source: "${{ steps.findjar.outputs.jarfile }}"
-        target: "/home/ubuntu"
+    - name: Download .war file
+      run: |
+         curl -u $JFROG_USERNAME:$JFROG_PASSWORD -O $ARTIFACTORY_URL/$ARTIFACTORY_REPO/$WAR_FILE
+
+    - name: Deploy to Tomcat
+      run: |
+         curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD --upload-file $WAR_FILE $TOMCAT_URL/manager/text/deploy?path=/$WAR_FILE&update=true
