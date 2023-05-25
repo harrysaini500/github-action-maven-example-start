@@ -11,7 +11,7 @@ env:
   TOMCAT_URL: http://3.142.141.49:8080
   TOMCAT_USERNAME: ${{ secrets.TOMCAT_USERNAME }}
   TOMCAT_PASSWORD: ${{ secrets.TOMCAT_PASSWORD }}
-  WAR_FILE: your-app.war
+  WAR_FILE: github-action-maven-tutorial-1.0-SNAPSHOT.jar
 jobs:
   build:
     runs-on: ubuntu-latest
