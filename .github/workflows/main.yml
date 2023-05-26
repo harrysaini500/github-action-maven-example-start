@@ -34,7 +34,7 @@ jobs:
         run: echo "::set-output name=jarfile::$(ls target/*.jar | head -n 1)"
       - name: Download .war file
         run: |
-          curl -u $JFROG_USERNAME:$JFROG_PASSWORD -o $ARTIFACTORY_URL/$ARTIFACTORY_REPO/$WAR_FILE
+          curl -u $JFROG_USERNAME:$JFROG_PASSWORD -O $ARTIFACTORY_URL/$ARTIFACTORY_REPO/$WAR_FILE
       - name: Deploy to Tomcat
         run: |
           curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD -T /home/runner/work/github-action-maven-example-start/github-action-maven-example-start/target/github-action-maven-tutorial-1.0-SNAPSHOT-jar-with-dependencies.jar 'http://ec2-3-142-141-49.us-east-2.compute.amazonaws.com:8080//manager/text/deploy?path=/spring_web'
