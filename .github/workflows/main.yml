@@ -38,4 +38,4 @@ jobs:
           ls -al
       - name: Deploy to Tomcat
         run: |
-          curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD "http://3.140.200.126:8081/artifactory//$ARTIFACTORY_REPO/$WAR_FILE"
+          curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD "http://3.142.141.49:8080/manager/text/deploy?url=http://3.140.200.126:8081/artifactory//$ARTIFACTORY_REPO/$WAR_FILE"
