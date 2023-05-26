@@ -37,5 +37,5 @@ jobs:
           curl -u $JFROG_USERNAME:$JFROG_PASSWORD -O $ARTIFACTORY_URL/$ARTIFACTORY_REPO/$WAR_FILE
       - name: Deploy to Tomcat
         run: |
-          curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD --upload-file $TOMCAT_URL/home/ubuntu/target
+          curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD --upload-file $TOMCAT_URL/home/ubuntu/target//deploy?path=/$WAR_FILE&update=true
 
