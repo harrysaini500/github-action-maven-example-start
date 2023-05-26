@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 env:
   ARTIFACTORY_URL: http://3.140.200.126:8081
-  ARTIFACTORY_REPO:  jfrog/github-action-maven-tutorial/1.0-SNAPSHOT
+  ARTIFACTORY_REPO:  jfrog
   ARTIFACTORY_USERNAME: ${{ secrets.JFROG_USERNAME }}
   ARTIFACTORY_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
   TOMCAT_URL: http://3.142.141.49:8080
