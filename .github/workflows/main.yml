@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
 env:
   ARTIFACTORY_URL: http://3.140.200.126:8081
-  ARTIFACTORY_REPO: jfrog
+  ARTIFACTORY_REPO:  jfrog/github-action-maven-tutorial/1.0-SNAPSHOT
   ARTIFACTORY_USERNAME: ${{ secrets.JFROG_USERNAME }}
   ARTIFACTORY_PASSWORD: ${{ secrets.JFROG_PASSWORD }}
   TOMCAT_URL: http://3.142.141.49:8080
@@ -37,4 +37,6 @@ jobs:
           curl -u $JFROG_USERNAME:$JFROG_PASSWORD -O $ARTIFACTORY_URL/$ARTIFACTORY_REPO/$WAR_FILE
       - name: Deploy to Tomcat
         run: |
-          curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD --upload-file $TOMCAT_URL/opt/tomcat9/webapps/manager/css/deploy?path=/$WAR_FILE&update=true
+          curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD --upload-file $WAR_FILE $TOMCAT_URL/manager/text/deploy?path=/my-app&update=true
+
+
