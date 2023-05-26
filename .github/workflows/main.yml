@@ -36,9 +36,6 @@ jobs:
         run: |
           curl -u $JFROG_USERNAME:$JFROG_PASSWORD -O $ARTIFACTORY_URL/$ARTIFACTORY_REPO/$WAR_FILE
       - name: Deploy to Tomcat
-        uses: martindsouza/deploy-to-tomcat@v1
-        with:
-         war: $WAR_FILE
-         tomcat_username: $TOMCAT_USERNAME
-         tomcat_password: $TOMCAT_PASSWORD
-         tomcat_manager_url: $TOMCAT_URL
+        run: |
+          curl -u $TOMCAT_USERNAME:$TOMCAT_PASSWORD --upload-file $TOMCAT_URL/manager/text/deploy?path=/$WAR_FILE&update=true
+
